@@ -1,0 +1,639 @@
+@font-face {
+    font-family: 'TTHakgyoansimRikodeoR';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2402_keris@1.0/TTHakgyoansimRikodeoR.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ChosunGu';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunGu.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: TTHakgyoansimRikodeoR, sans-serif;
+  background: linear-gradient(to bottom, #ffcad2, #fff1f3); /* 💫 그라데이션 배경 */
+  overflow: hidden;
+}
+
+/* 🌈 바깥 배경 컨테이너 */
+.outer-bg {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 📦 안쪽 흰색 박스 */
+#arcade-2 {
+  width: 90vw;
+  max-width: 1200px;
+  height: 85vh;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(99, 14, 14, 0.1);
+  display: flex;
+  flex-direction: column;
+  padding: 4vh 4vw;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* 내용이 꽉 차게끔 메인은 확장 가능하게 */
+main.contents {
+  flex: 0 0 85%;  /* 60% 높이 */
+  overflow: hidden;
+  flex-direction: row; /* ← 가로 배치! */
+  gap: 1vw;             /* 패널 사이 간격 */
+  display: flex;
+  justify-content: space-between;
+}
+
+main.contents-2 {
+  flex: 1;  /* 60% 높이 */
+  overflow: hidden;
+  flex-direction: row; /* ← 가로 배치! */
+  gap: 1vw;             /* 패널 사이 간격 */
+  display: flex;
+  justify-content: space-between;
+}
+
+/* 푸터는 항상 맨 아래 */
+footer {
+  height: 40px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4vh;
+  color: rgb(53, 46, 37);
+  background: transparent;
+  padding-top: 1vh;
+}
+
+#contact a {
+  text-decoration: none;
+  color: rgb(53, 46, 37);
+}
+
+html {
+  font-family: TTHakgyoansimRikodeoR, sans-serif;
+  background: linear-gradient(to bottom, #ffcad2, #fff1f3);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  overflow: hidden;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;  /* 내용 넘쳐도 스크롤 없이 잘림 */
+}
+
+#arcade {
+  width: 33vw;
+  height: 100vh;
+  margin: 0 auto;
+  padding: 5vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #ffcad2, #fff1f3);
+  border-radius: 12px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+#arcade::before {
+  content: "";
+  position: absolute;
+  top: 10vh;
+  right: 5vh;
+  bottom: 15vh;
+  left: 5vh;
+  background: white; /* 안쪽 내용 배경 */
+  border-radius: 6px;
+  z-index: 0;
+  box-shadow: 0 0 20px rgba(99, 14, 14, 0.1);
+
+}
+
+#arcade > * {
+  position: relative;
+  z-index: 1;
+}
+
+.outer-bg {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body {
+  justify-items: center;
+  background: linear-gradient(to bottom, #ffcad2, #fff1f3);
+  margin: 0;
+  padding: 0;
+  height: 100vh;           /* 뷰포트 전체 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: TTHakgyoansimRikodeoR, sans-serif;
+  overflow: hidden;
+}
+
+#screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* ← 이게 가운데 정렬 핵심! */
+  justify-content: center;
+}
+
+#screen h1 {
+  margin: 1.5vh;
+  font-size: 4vh;
+  color: rgb(53, 46, 37);
+  text-decoration: none;
+  transition: padding-left 0.3s ease;
+}
+
+#screen h1 a {
+  position: relative;
+  color: inherit;
+  text-decoration: none;
+  transition: padding-left 0.3s ease;
+}
+
+#screen h1 a::before {
+  content: "▶";
+  font-size: 0.75em;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #F3C4CB;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#screen h1 a:hover {
+  padding-left: 1.5em; /* ← 글자를 오른쪽으로 밀어줘 */
+}
+
+#screen h1 a:hover::before {
+  opacity: 1; /* 삼각형 보여주기 */
+}
+
+header {
+  flex: 0 0 15%;
+  position: relative; /* 🧷 absolute 포지션 기준점 */
+  overflow: visible;   /* 🔥 이미지가 튀어나오도록 허용 */
+}
+
+#logo {
+  text-align: center;
+  margin-bottom: 2vh;
+}
+
+#logo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* 비율 유지하며 잘림 없이 */
+  display: block;
+}
+
+#logo-2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* 💥 중앙에 띄우기 */
+  z-index: 10;
+}
+
+/* 이미지 크게 키워도 OK! */
+#logo-2 img {
+  height: 35vh; /* 💥 header보다 커도 괜찮음 */
+  object-fit: contain;
+}
+
+#logo h1 {
+  margin: 0;
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.2em 0;
+  text-decoration: none;
+  color:rgb(53, 46, 37);
+  padding-top: 3vh;
+}
+
+/* 위쪽 형광펜 줄 */
+#logo h1::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.2em;
+  width: 100%;
+  height: 0.2em;
+  background-color: #FCDADA;
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+/* 아래쪽 형광펜 줄 */
+#logo h1::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0.2em;
+  background-color: #F3C4CB;
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+/* hover 시 애니메이션 발동 */
+#logo h1:hover::before,
+#logo h1:hover::after {
+  transform: scaleX(1);
+}
+
+#logo a:link, #logo a:visited {
+  text-decoration: none;
+  color:rgb(53, 46, 37);
+}
+
+footer {
+  margin-top: auto;           /* ← 남은 공간을 위로 밀어서 footer를 아래로 */
+  height: 40px;
+  flex-shrink: 0;
+  display: flex;              /* 내부 텍스트 정렬용 */
+  align-items: flex-end;      /* 텍스트를 아래쪽에 정렬 */
+  justify-content: center;    /* 가운데 정렬 */
+  padding: 10px;
+  z-index: 100;
+}
+
+#contact h6 {
+  font-family: ChosunGu, sans-serif;
+    text-decoration: none;
+    color: rgb(53, 46, 37);
+    margin: 0;
+    font-size: 1.5vh;
+}
+
+#contact a:link, #contact a:visited {
+    text-decoration: none;
+    color: rgb(53, 46, 37);
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.panel {
+  flex: 1; /* 전체 가로 너비를 3등분 */
+  min-width: 0;
+  max-width: 33.33%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 1vh;
+}
+
+.left-panel .toggle-content {
+  align-items: flex-start;
+  justify-content: flex-end;
+  flex-direction: row-reverse;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: all 0.4s ease;
+}
+
+.right-panel .toggle-content {
+  align-items: flex-start;
+  justify-content: flex-end;
+  flex-direction: row;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.4s ease;
+}
+
+.toggle-content {
+  width: 100%;
+  height: 80%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.panel.active .toggle-content {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+#toggle-trigger-left {
+  margin-top: 7vh;
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: rgb(96, 63, 55);
+  align-items: center;
+}
+
+#toggle-trigger-right {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: rgb(96, 63, 55);
+  align-items: center;
+}
+
+/* 형광펜 밑줄 */
+#toggle-trigger-left::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0.1em;
+  width: 0;
+  height: 1em;
+  background-color: #FCDADA;
+  z-index: -1;
+  transition: width 0.4s ease, left 0.4s ease;
+}
+
+/* hover 시 가운데에서 양옆으로 펼쳐짐 */
+#toggle-trigger-left:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* 형광펜 밑줄 */
+#toggle-trigger-right::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0.1em;
+  width: 0;
+  height: 1em;
+  background-color: #F3C4CB;
+  z-index: -1;
+  transition: width 0.4s ease, left 0.4s ease;
+}
+
+/* hover 시 가운데에서 양옆으로 펼쳐짐 */
+#toggle-trigger-right:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+.center-panel {
+  display: flex;
+  flex-direction: column;      /* ← 요소들을 가로로 쌓아줘! */
+  align-items: center;      /* (선택) 세로 가운데 정렬 */
+  justify-content: flex-start;  /* (선택) 가로 가운데 정렬 */
+  gap: 1vw;                 /* (선택) 요소 사이 간격 */
+  max-width: 100%;      /* 부모인 패널 안에서 최대 너비 */
+}
+
+.center-panel span {
+  white-space: nowrap;
+  max-width: 100%;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: floatIn 0.6s ease-out forwards;
+  display: inline-block;
+  z-index: 30;
+}
+
+.center-panel img {
+  width: 80%;
+  height: auto;
+  max-width: 80%;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: floatIn 1s ease-out forwards;
+  z-index: 2;
+}
+
+.center-panel span:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.center-panel span:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.toggle-content img {
+  max-width: 75%;
+  height: 80%;
+  width: auto;
+  display: block;
+  object-fit: contain;
+  z-index: 1;
+}
+
+.introduce {
+  width: 15vw;
+  height: auto;
+  white-space: nowrap;
+}
+
+.introduce h5 {
+  white-space: nowrap;
+  padding: 1vh;
+  margin: 0;
+  font-size: 2vh;
+  font-family: ChosunGu, sans-serif;
+}
+
+.introduce .en-name {
+  padding-top: 0.1vh;
+  font-size: 1.5vh;
+  font-family: ChosunGu, sans-serif;
+}
+
+.introduce h4 {
+  margin-top: 0;
+  color: rgb(96, 63, 55);
+  padding: 1vh;
+  font-size: 3vh;
+  border-bottom: 2px solid #FCDADA; /* 얇고 감성적인 밑줄 */
+  display: inline-block; /* 텍스트 길이만큼만 밑줄 */
+}
+
+.introduce .illust-copyright {
+  padding-top: 5vh;
+  font-size: 1.25vh;
+  font-family: ChosunGu, sans-serif;
+}
+
+.gallery {
+  flex: 1;
+  width: 100%;
+  height: auto;
+  overflow-y: auto;
+  overflow-x: hidden;          /* 💥 가로 스크롤 강제 제거 */
+  columns: 4 160px;            /* 컬럼 줄이기 */
+  column-gap: 1vh;
+  padding-right: 1vh;
+  z-index: 20;
+}
+
+.gallery img {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1vh;
+  height: auto;
+  display: block;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+  break-inside: avoid;          /* 🔧 이미지 쪼개짐 방지 */
+  z-index: 20;
+}
+
+.gallery img:hover {
+  transform: scale(1.03);
+}
+
+/* 💫 라이트박스 전체 */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(10px);
+  background-color: rgba(66, 38, 38, 0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* 💨 흐릿한 배경 */
+.lightbox-blur {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(20px);
+  background-color: rgba(66, 38, 38, 0.4);
+  z-index: 0;
+}
+
+/* 💥 확대된 이미지 */
+#lightbox-img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  animation: zoomIn 0.3s ease;
+  z-index: 1;
+  position: relative;
+}
+
+/* 🎯 애니메이션 */
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ◀▶ 좌우 네비게이션 */
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 4vh;
+  background: rgba(255,255,255,0.6);
+  border: none;
+  border-radius: 50%;
+  width: 6vh;
+  height: 6vh;
+  cursor: pointer;
+  z-index: 2;
+  transition: background 0.3s;
+}
+
+.nav:hover {
+  background: rgba(255,255,255,0.9);
+}
+
+.nav.left {
+  left: 5vw;
+}
+.nav.right {
+  right: 5vw;
+}
+
+main.contents-3 {
+  flex: 0 0 85%;  /* 60% 높이 */
+  overflow-y: auto;
+  flex-direction: column;
+  gap: 1vw;             /* 패널 사이 간격 */
+  display: flex;
+  justify-content: space-between;
+}
+
+.lightbox-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1vh;
+  z-index: 1;
+  position: relative;
+}
+
+#lightbox-source {
+  font-family: ChosunGu, sans-serif;
+  color: #fefefe;
+  font-size: 1.5vh;
+  background: rgba(73, 39, 39, 0.5);
+  padding: 0.5vh 1vh;
+  border-radius: 8px;
+  max-width: 90vw;
+  text-align: center;
+  margin-bottom: 0;
+}
